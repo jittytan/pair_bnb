@@ -14,9 +14,11 @@
       <% if signed_in? -%>
         <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
         <%= current_user[:first_name] %>
+        <%= button_to "My Profile", user_path(current_user), method: :get %>
+        <%= button_to "Home", root_path, method: :get %>
       <% else -%>
         <%= link_to t(".sign_in"), sign_in_path %>
-      <% end -%>
+      <% end %>
     </div>
 
     <div id="flash">

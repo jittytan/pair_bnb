@@ -1,1 +1,10 @@
 <h1> User profile </h1>
+
+<h2>My listings</h2>
+<% @my_listings.each do |a| %>
+	<p>Name: <%= a.name %></p>
+	<p>Description: <%= a.description %></p><br>
+<% end %>
+
+<%= button_to "Create new listing", new_listing_path, method: :get %>
+<%= button_to "Show all listing", listings_path, method: :get %>
