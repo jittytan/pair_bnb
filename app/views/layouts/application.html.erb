@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => "reload" %>  
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tag %>
+
 </head>
 <body>
-  <div id="header">
-    <% if signed_in? -%>
-      <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
-      <%= current_user[:first_name] %>
-    <% else -%>
-      <%= link_to t(".sign_in"), sign_in_path %>
-    <% end -%>
-  </div>
+<div class="container">
+  <nav class="navbar navbar-default">
 
-  <div id="flash">
-    <% flash.each do |key, value| -%>
-      <div id="flash_<%= key %>"><%=h value %></div>
-    <% end %>
-  </div>
+    <div id="header">
+      <% if signed_in? -%>
+        <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
+        <%= current_user[:first_name] %>
+      <% else -%>
+        <%= link_to t(".sign_in"), sign_in_path %>
+      <% end -%>
+    </div>
+
+    <div id="flash">
+      <% flash.each do |key, value| -%>
+        <div id="flash_<%= key %>"><%=h value %></div>
+      <% end %>
+    </div>
+
+  </nav>
 
   <%= yield %>
+</div>
+
 </body>
 </html>
