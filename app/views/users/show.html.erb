@@ -3,8 +3,14 @@
 <h2>My listings</h2>
 <% @my_listings.each do |a| %>
 	<p>Name: <%= a.name %></p>
-	<p>Description: <%= a.description %></p><br>
+	<p>Description: <%= a.description %></p>
+	<% if a.user == current_user %>
+		<span><%= link_to "Edit listing", edit_listing_path(a) %>  </span>
+		<span>  <%= link_to "Remove listing", listing_path(a), method: :delete %></span><br>
+	<% end %>
 <% end %>
 
-<%= button_to "Create new listing", new_listing_path, method: :get %>
-<%= button_to "Show all listing", listings_path, method: :get %>
+<% if current_user %>
+	<%= button_to "Create new listing", new_listing_path, method: :get %>
+	<%= button_to "Show all listing", listings_path, method: :get %>
+<% end %>

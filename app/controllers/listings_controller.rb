@@ -29,9 +29,30 @@ end
 
 def index #app/views/listings/index.html.erb
 
-    @listings = Listing.all
+  @listings = Listing.all
 
 end
+
+def edit
+	@listing = Listing.find(params[:id])
+end
+
+def update
+	@listing = Listing.find(params[:id])
+	@listing.update(listing_params)
+	if @listing.save 
+    redirect_to @listing 
+  else 
+    render :edit 
+	end
+end
+
+def destroy
+	@listing = Listing.find(params[:id])
+	@listing.destroy
+	redirect_to user_path
+end
+
 
 private
 
