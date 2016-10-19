@@ -61,7 +61,7 @@ def search
 end
 
 
-private
+	private
 
 	def listing_params
 		params.require(:listing).permit(:name, :description, :city, :tag_list, {avatars:[]})
