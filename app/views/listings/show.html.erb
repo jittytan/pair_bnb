@@ -2,3 +2,6 @@
 
 <p>Name: <%= @listing.name %></p>
 <p>Description: <%= @listing.description %></p>
+<p>Tags: <% @listing.tags.each do |b| %>
+	<%= link_to "#{b.name}", "/listings/tags/" + b.id.to_s, methos: :get %>
+	<% end %></p><br>

@@ -19,7 +19,6 @@ end
 
 def new
 	@listing = Listing.new
-
 	render template:"listings/new"
 end
 
@@ -27,10 +26,14 @@ def show
 	@listing = Listing.find(params[:id])
 end
 
+def tag
+	@listings = Tag.find(params[:id]).listings
+	render :index
+end
+
+
 def index #app/views/listings/index.html.erb
-
   @listings = Listing.all
-
 end
 
 def edit
@@ -57,7 +60,7 @@ end
 private
 
 	def listing_params
-		params.require(:listing).permit(:name, :description)
+		params.require(:listing).permit(:name, :description, :tag_list)
 	end
 
 end

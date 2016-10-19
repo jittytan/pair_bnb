@@ -4,10 +4,14 @@
 <% @my_listings.each do |a| %>
 	<p>Name: <%= a.name %></p>
 	<p>Description: <%= a.description %></p>
+	Tags: <% a.tags.each do |b| %>
+	<%= link_to "#{b.name}", "/listings/tags/" + b.id.to_s, method: :get %>
+	<% end %><br>
 	<% if a.user == current_user %>
 		<span><%= link_to "Edit listing", edit_listing_path(a) %>  </span>
 		<span>  <%= link_to "Remove listing", listing_path(a), method: :delete %></span><br>
 	<% end %>
+	<p>_________________________________________</p>
 <% end %>
 
 <% if current_user %>

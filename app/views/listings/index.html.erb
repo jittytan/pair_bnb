@@ -4,7 +4,10 @@
 <% @listings.each do |x| %>
 
   Name: <%= x.name %> <br>
-  Description: <%= x.description %><br><br>
+  Description: <%= x.description %><br>
+  Tags: <% x.tags.each do |b| %>
+	<%= link_to "#{b.name}", "/listings/tags/" + b.id.to_s, methos: :get %>
+	<% end %><br><br>
  
 
 <% end %>

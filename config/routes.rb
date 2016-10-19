@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get "/sign_up" => "clearance/users#new", as: "sign_up"
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   get "/users/:id" => "users#show"
+  get "/listings/tags/:id" => "listings#tag"
  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
