@@ -23,6 +23,9 @@ gem 'figaro'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'mini_magick'
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

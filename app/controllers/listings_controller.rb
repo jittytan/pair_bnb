@@ -1,8 +1,5 @@
 class ListingsController < ApplicationController
 
-def index
-end
-
 def create
 
 	@listing = current_user.listings.new(listing_params)
@@ -13,8 +10,6 @@ def create
 	else
 		render :new
 	end
-
-
 end
 
 def new
@@ -24,6 +19,7 @@ end
 
 def show
 	@listing = Listing.find(params[:id])
+
 end
 
 def tag
@@ -57,10 +53,18 @@ def destroy
 end
 
 
+def search
+
+	@listings = Listing.where(city: params[:listing][:city])
+
+	render :index
+end
+
+
 private
 
 	def listing_params
-		params.require(:listing).permit(:name, :description, :tag_list)
+		params.require(:listing).permit(:name, :description, :city, :tag_list, {avatars:[]})
 	end
 
 end

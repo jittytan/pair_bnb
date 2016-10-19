@@ -1,7 +1,15 @@
 <h1>This is my listing show page</h1>
 
+
+<% if @listing.avatars != [] %>
+	<%= image_tag (@listing.avatars[0].large.url) %>
+<% end %>
+
+
+
 <p>Name: <%= @listing.name %></p>
 <p>Description: <%= @listing.description %></p>
+<p>City: <%= @listing.city %></p>
 <p>Tags: <% @listing.tags.each do |b| %>
-	<%= link_to "#{b.name}", "/listings/tags/" + b.id.to_s, methos: :get %>
+	<%= link_to "#{b.name}", "/listings/tags/" + b.id.to_s, method: :get %>
 	<% end %></p><br>

@@ -3,5 +3,15 @@
 		<h1>PairBnB</h1>
 		<p>Enjoy the confort of home somewhere else</p>
 	</div>
+
+
+	<%= form_for :listing, url: listing_search_path, method: :get do |f| %>
+
+	<%= f.label :city, "Search City" %>
+	<%= f.text_field :city %>
+	<%= f.submit "Search"%>
+	<% end %>
+
+
 </div>
 
