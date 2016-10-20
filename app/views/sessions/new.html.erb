@@ -2,6 +2,6 @@
   <h2><%= t(".title") %></h2>
 
   <%= render partial: '/sessions/form' %>
-  <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+  <%= button_to "Sign in with Facebook", "/auth/facebook", id: "sign_in", class: "btn btn-social-icon btn-facebook" %>
 
 </div>

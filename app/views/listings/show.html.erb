@@ -1,8 +1,44 @@
 <h1>This is my listing show page</h1>
 
 
+<!-- <% if @listing.avatars != [] %>
+	<% @listing.avatars.each do |x| %>
+	<%= image_tag (x.medium.url) %>
+	<% end %>
+<% end %> -->
+ 
 <% if @listing.avatars != [] %>
-	<%= image_tag (@listing.avatars[0].large.url) %>
+	<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 500px; margin: 0 auto; position: relative">
+	  <!-- Indicators -->
+	  <ol class="carousel-indicators">
+	    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+	    <% z = 1 %>
+	    <% (@listing.avatars.count - 1).times do |y| %>
+	    	<li data-target="#myCarousel" data-slide-to="<%= z%>"></li>
+	    	<% z += 1 %>
+	    <% end %>
+	  </ol>
+
+	  <!-- Wrapper for slides -->
+	  <div class="carousel-inner" role="listbox">
+	  	<div class="item active">
+	      <%= image_tag (@listing.avatars[0].medium.url) %>
+	    </div>
+		  <% @listing.avatars.each do |x| %>
+				<div class="item"><%= image_tag (x.medium.url) %></div>
+			<% end %>			
+		</div>
+
+	  <!-- Left and right controls -->
+	  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+	    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+	    <span class="sr-only">Previous</span>
+	  </a>
+	  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+	    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+	    <span class="sr-only">Next</span>
+	  </a>
+	</div>
 <% end %>
 
 
