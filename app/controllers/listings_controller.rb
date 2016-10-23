@@ -57,8 +57,25 @@ end
 def search
 
 	@listings = Listing.where(city: params[:listing][:city])
+	@check_in_date = Date.strptime(params[:listing][:check_in_date], "%m/%d/%Y")
+	@amount_of_days = params[:listing][:amount_of_days].to_i
+	@check_out_date = @check_in_date + @amount_of_days
 
-	render :index
+
+	@date_search = (@check_in_date..@check_out_date-1).map do |date|
+		date
+	end
+
+	@passed_search = []
+
+	@listings.each do |x|
+		@unavailable_dates = x.unavailable_dates.all.map { |a| a.unavailable_date }
+		if @date_search.include?(@unavailable_dates) == false # Thats means the date search has no unavailable date for the listing ie. all the date they search are available
+			@passed_search << x
+		end
+	end
+
+	render :search
 end
 
 

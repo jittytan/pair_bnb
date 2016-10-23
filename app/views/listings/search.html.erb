@@ -1,0 +1,19 @@
+<h1> this is the page for the search result</h1>
+
+<% @passed_search.each do |y| %>
+  Name: <%= link_to "#{y.name}", listing_path(y), method: :get %> <br>
+  Description: <%= y.description %><br>
+  City: <%= y.city %><br>
+  By: <%= y.user.first_name %><br>
+  Check-in: <%= @check_in_date %><br>
+  Check-out: <%= @check_out_date %><br>
+  Amount of days: <%= @amount_of_days %><br>
+  Tags: <% y.tags.each do |c| %>
+	<%= link_to "#{c.name}", "/listings/tags/" + c.id.to_s, method: :get %>
+	<% end %><br><br>
+
+	<%= link_to "Reserve now", new_listing_reservation_path(y) %>
+	<p>___________________________________________</p>
+ 
+
+<% end %>

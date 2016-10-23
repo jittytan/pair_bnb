@@ -9,6 +9,13 @@
 
 	<%= f.label :city, "Search City" %>
 	<%= f.text_field :city %>
+
+	<%= f.label :check_in_date %>
+	<%= f.text_field :check_in_date, placeholder: "dd/mm/yyyy" , id: "datepicker" %>
+
+	<%= f.label :amount_of_days %>
+	<%= f.text_field :amount_of_days %>
+
 	<%= f.submit "Search"%>
 	<% end %>
 
