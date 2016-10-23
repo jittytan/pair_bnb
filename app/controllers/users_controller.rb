@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 	end
 
 	def update
-	byebug
+
 		@user = current_user
 		@user.update(listing_params)
 		redirect_to @user

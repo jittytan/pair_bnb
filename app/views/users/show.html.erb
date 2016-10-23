@@ -1,5 +1,10 @@
 <h1> User profile </h1>    <span><%= button_to "Edit my info", edit_user_path(current_user), method: :get %></span>
 
+<h2> My reservation </h2>
+<% if current_user %>
+	<%= button_to "Show your reservations", user_reservations_path(current_user.id), method: :get %>
+<% end %>
+
 <h2>My listings</h2>
 <% @my_listings.each do |a| %>
 	<p>Name: <%= link_to "#{a.name}", listing_path(a), method: :get %></p>
@@ -18,4 +23,5 @@
 <% if current_user %>
 	<%= button_to "Create new listing", new_listing_path, method: :get %>
 	<%= button_to "Show all listing", listings_path, method: :get %>
+
 <% end %>

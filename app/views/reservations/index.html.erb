@@ -1,0 +1,13 @@
+<h1>Reservations#index</h1>
+<p>Find me in app/views/reservations/index.html.erb</p>
+
+<% @reservations.each do |x| %>
+	<p>Name: <%= x.listing.name %></p>
+	<p>Description: <%= x.listing.description %></p>
+	<p>City: <%= x.listing.city %></p>
+	<p>By: <%= x.user.first_name %></p>
+	<p>Check in Date: <%= x.check_in_date %></p>
+	<p> Check out date: <%= (Date.parse(x.check_in_date) + x.amount_of_days.to_i).strftime('%d/%m/%Y') %>
+	<p> Number of days: <%= x.amount_of_days %></p>
+	<p>_________________________________________</p>
+<% end %>

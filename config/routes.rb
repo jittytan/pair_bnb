@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+
+
  root 'home#index'
 
-  resources :listings
+  resources :listings do 
+    resources :reservations, only: [:new, :create, :show, :index]
+  end
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
   resources :users, only: [:show, :edit, :update, :destroy]
@@ -19,6 +23,7 @@ Rails.application.routes.draw do
   get "/users/:id" => "users#show"
   get "/listings/tags/:id" => "listings#tag"
   get "/listing/search" => "listings#search", as: "listing_search"
+  get "/users/:id/reservations" => "reservations#index", as: "user_reservations"
  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

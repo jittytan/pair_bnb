@@ -29,6 +29,7 @@ end
 
 
 def index #app/views/listings/index.html.erb
+	@other_listings = Listing.where.not(user_id: current_user.id)
   @listings = Listing.all
 end
 

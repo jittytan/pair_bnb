@@ -17,6 +17,7 @@
         <% if signed_in? %>
           <li><%= link_to " " + t(".sign_out"), sign_out_path, method: :delete, class: "glyphicon glyphicon-log-out"%>
           <li><%= link_to " My Profile", user_path(current_user), method: :get, class: "glyphicon glyphicon-user"%>
+          <li>Welcome <%= current_user.first_name %>
         <% else %>
           <li><%= link_to " " + t(".sign_in"), sign_in_path, class: "glyphicon glyphicon-log-in"%>
         <% end %>

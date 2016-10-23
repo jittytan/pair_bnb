@@ -1,5 +1,5 @@
-<h1>This is my listing show page</h1>
-
+<h1>Reservations#new</h1>
+<p>Find me in app/views/reservations/new.html.erb</p>
 
 <% if @listing.avatars != [] %>
 	<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 500px; margin: 0 auto; position: relative">
@@ -40,6 +40,25 @@
 <p>Name: <%= @listing.name %></p>
 <p>Description: <%= @listing.description %></p>
 <p>City: <%= @listing.city %></p>
+<p>By : <%= @listing.user.first_name %>
 <p>Tags: <% @listing.tags.each do |b| %>
 	<%= link_to "#{b.name}", "/listings/tags/" + b.id.to_s, method: :get %>
-	<% end %></p><br>
+	<% end %>
+</p><br>
+
+<%= form_for [@listing, @reservation] do |f| %>
+	<%= f.label :check_in_date %>
+	<%= f.text_field :check_in_date, placeholder: "dd/mm/yyyy" %>
+
+	<%= f.label :amount_of_days %>
+	<%= f.text_field :amount_of_days %>
+
+	<%= f.submit %>
+<% end %>
+
+
+<% if @flash %>
+	<% @flash.each do |d| %>
+		<%= d %>
+	<% end %>
+<% end %>
