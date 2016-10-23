@@ -3,7 +3,7 @@ class CreateReservations < ActiveRecord::Migration
     create_table :reservations do |t|
       t.integer :user_id
       t.integer :listing_id
-      t.string :check_in_date
+      t.date :check_in_date
       t.integer :amount_of_days
 
       t.timestamps null: false

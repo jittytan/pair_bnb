@@ -15,3 +15,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+  $( function() {
+    $( "#datepicker" ).datepicker({ minDate: 1, maxDate: "+6M " });
+
+  } );
