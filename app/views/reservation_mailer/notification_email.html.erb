@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Congratulations! You have received a booking from <%= @customer.email %> </h1>
+    <p>You can see details of the listing of the reservation made here:</p>
+    <p>Name: <%= @listing.name %></p>
+    <p>Description: <%= @listing.description %></p>
+    <p>City: <%= @listing.city %></p>
+    <p>Check-in Date: <%= @reservation.check_in_date %></p>
+    <p>Check-out Date <%= @reservation.check_in_date + (@reservation.amount_of_days).to_i %>
+    <p>Amount of days: <%= @reservation.amount_of_days %></p>
+  </body>
+</html>

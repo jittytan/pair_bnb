@@ -69,9 +69,19 @@ def search
 	@passed_search = []
 
 	@listings.each do |x|
-		@unavailable_dates = x.unavailable_dates.all.map { |a| a.unavailable_date }
-		if @date_search.include?(@unavailable_dates) == false # Thats means the date search has no unavailable date for the listing ie. all the date they search are available
+		# @unavailable_dates = x.unavailable_dates.all.map { |a| a.unavailable_date }
+
+		x.unavailable_dates.all.each do |a|
+			if @date_search.include?(a.unavailable_date) == true # Thats means the date search contain an unavailable date, which means that listing is not available for the date customer wanted, so failed search
+				@failed = true
+			end
+			break if @failed 
+		end
+
+		if @failed == nil # if not failed, that means it passed the loop above and it is available to book for the @date_search given
 			@passed_search << x
+		# if @date_search.include?(@unavailable_dates) == false 
+		# 	@passed_search << x
 		end
 	end
 

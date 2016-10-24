@@ -5,6 +5,7 @@ class ReservationsController < ApplicationController
   end
 
   def create
+
   	@listing = Listing.find(params[:listing_id])
 		@check_in_date = Date.strptime(params[:reservation][:check_in_date], "%d/%m/%Y")
 
@@ -12,7 +13,8 @@ class ReservationsController < ApplicationController
 	  	@check_out_date = @check_in_date + params[:reservation][:amount_of_days].to_i
 	  	@number_saved = 0
 	  	(@check_in_date..@check_out_date-1).each do |date| # imagine if stay one day, the unavailable date will be the checking-in day itself, next day will be checkout but the checkout date is allow for reservation, therefore I minus out the check_out date
-	  		@unavailable_date = UnavailableDate.new(unavailable_date: date, listing_id:params[:listing_id]) 
+	  		@unavailable_date = UnavailableDate.new(unavailable_date: date, listing_id: params[:listing_id])
+	 
 	  		@unavailable_date.save
 	  			if @unavailable_date.save
 	  				@number_saved += 1
@@ -28,7 +30,9 @@ class ReservationsController < ApplicationController
 	  	if @flash_msg == nil
 
 		  	@reservation = current_user.reservations.new(listing_id: params[:listing_id], check_in_date: @check_in_date, amount_of_days: params[:reservation][:amount_of_days].to_i)
+		  	@host = @listing.user
 		  	@reservation.save
+		  	ReservationMailer.notification_email(current_user, @host, @reservation.listing_id, @reservation.id).deliver_later
 		  	redirect_to (listing_reservation_path(listing_id: params[:listing_id], id: @reservation.id))
 		  else
 		  	@reservation = Reservation.new
