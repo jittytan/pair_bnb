@@ -1,15 +1,12 @@
 class ReservationsController < ApplicationController
   def new
-  	byebug
   	@listing = Listing.find(params[:listing_id])
   	@reservation = Reservation.new
   end
 
   def create
-  	byebug
-
   	@listing = Listing.find(params[:listing_id])
-		@check_in_date = Date.strptime(params[:reservation][:check_in_date], "%m/%d/%Y")
+		@check_in_date = Date.strptime(params[:reservation][:check_in_date], "%d/%m/%Y")
 
 		if @check_in_date > Date.today && @check_in_date < 6.months.since
 	  	@check_out_date = @check_in_date + params[:reservation][:amount_of_days].to_i

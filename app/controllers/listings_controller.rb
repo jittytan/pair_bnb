@@ -57,7 +57,7 @@ end
 def search
 
 	@listings = Listing.where(city: params[:listing][:city])
-	@check_in_date = Date.strptime(params[:listing][:check_in_date], "%m/%d/%Y")
+	@check_in_date = Date.strptime(params[:listing][:check_in_date], "%d/%m/%Y")
 	@amount_of_days = params[:listing][:amount_of_days].to_i
 	@check_out_date = @check_in_date + @amount_of_days
 

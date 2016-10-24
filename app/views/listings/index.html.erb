@@ -18,27 +18,3 @@
  
 
 <% end %>
-
-
-
-
-
-
-
-<br>
-<p>====================================</p>
-<p>This is all the listing including yours</p>
-<p>====================================</p>
-<% @listings.each do |x| %>
-
-  Name: <%= link_to "#{x.name}", listing_path(x), method: :get %> <br>
-  Description: <%= x.description %><br>
-  City: <%= x.city %><br>
-  By: <%= x.user.first_name %><br>
-  Tags: <% x.tags.each do |b| %>
-	<%= link_to "#{b.name}", "/listings/tags/" + b.id.to_s, methos: :get %>
-	<% end %><br>
-	<p>___________________________________________</p>
- 
-
-<% end %>
