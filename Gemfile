@@ -26,6 +26,9 @@ gem 'omniauth-facebook'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
 
+#active job
+gem 'sidekiq'
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

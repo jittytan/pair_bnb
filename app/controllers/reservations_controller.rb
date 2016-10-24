@@ -32,7 +32,8 @@ class ReservationsController < ApplicationController
 		  	@reservation = current_user.reservations.new(listing_id: params[:listing_id], check_in_date: @check_in_date, amount_of_days: params[:reservation][:amount_of_days].to_i)
 		  	@host = @listing.user
 		  	@reservation.save
-		  	ReservationMailer.notification_email(current_user, @host, @reservation.listing_id, @reservation.id).deliver_later
+		  	# ReservationMailer.notification_email(current_user, @host, @reservation.listing_id, @reservation.id).deliver_later
+		  	ReservationJob.perform_later(current_user, @host, @reservation.listing_id, @reservation.id)
 		  	redirect_to (listing_reservation_path(listing_id: params[:listing_id], id: @reservation.id))
 		  else
 		  	@reservation = Reservation.new
