@@ -53,7 +53,8 @@
 <p>Name: <%= @listing.name %></p>
 <p>Description: <%= @listing.description %></p>
 <p>City: <%= @listing.city %></p>
-<p>By : <%= @listing.user.first_name %>
+<p>Price: RM <%= @listing.price %> per night</p>
+<p>By : <%= @listing.user.first_name %></p>
 <p>Tags: <% @listing.tags.each do |b| %>
 	<%= link_to "#{b.name}", "/listings/tags/" + b.id.to_s, method: :get %>
 	<% end %>

@@ -1,9 +1,27 @@
-<h1>Reservations#show</h1>
-<p>Find me in app/views/reservations/show.html.erb</p>
+<% if @reservation.payments.where(status: :authorized).count == 0%>
+  <h1> Congrats! You reserved your booking, please pay to finalise the reservation</h1> 
+<% else %>
+  <h1> Congrats! Now sleep well, and enjoy your accomodation later </h1>
+<% end %>
 
-<h1> Congrats! You finalised your reservation</h1>
+<h3>Your Reservation</h3>
 
-<p> Name: <%= @listing.name %></p>
-<p> City: <%= @listing.city %></p>
-<p> Check-in: <%= @check_in_date%></p>
-<p> Check-out: <%= @check_out_date %></p>
+<ul class="list-group">
+  <li class="list-group-item">
+    <p>Listing name: <%= @listing.name %></p>
+    <p>Location: <%= @listing.city %> </p>
+    <p>Check-in Date: <%= @check_in_date %></p>
+		<p>Checkout Date: <%= @check_out_date %></p>
+		<p>Amount of days: <%= @reservation.amount_of_days %></p>
+    <p>Total amount to pay: RM <%= @reservation.total_sum %></p>
+
+    <strong>Payment Status:</strong>
+      <% if @reservation.payments.where(status: :authorized).count == 0%>
+      <span class="btn btn-danger"> NOT PAID </span>
+
+       <%= link_to 'Pay Now' , new_listing_reservation_payment_path(@listing, @reservation), class: "btn btn-warning"  %>
+      <% else %>
+      <span class="btn btn-success">PAID</span>
+      <% end %>
+  </li>
+</ul>

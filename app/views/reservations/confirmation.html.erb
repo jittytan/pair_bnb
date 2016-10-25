@@ -1,0 +1,23 @@
+<h1> This is the confirmation page before redirecting to payment page</h1>
+
+<h3>Your Reservation</h3>
+
+<ul class="list-group">
+  <li class="list-group-item">
+    <p>Listing name: <%= @listing.name %></p>
+    <!-- <p>No. of Guest: <%= @reservation.no_of_guests%> </p> -->
+    <p>Location: <%= @listing.city %> </p>
+    <p>Check-in Date: <%= @reservation.start_date %></p>
+    <p>Checkout Date: <%= @reservation.end_date %></p>
+    <p>Amount of days: <%= @reservation.amount_of_days %></p>
+    <p>Total amount to pay: RM <%= @reservation.total_sum %></p>
+    <strong>Payment Status:</strong>
+      <% if @reservation.payments.where(status: :authorized).count == 0%>
+      <span class="btn btn-danger"> NOT PAID </span>
+
+       <%= link_to 'Pay Now' , new_payment_path + "?id=" + reservation.id.to_s, class: "btn btn-warning"  %>
+      <% else %>
+      <span class="btn btn-success">PAID</span>
+      <% end %>
+  </li>
+</ul>

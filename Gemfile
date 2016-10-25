@@ -15,7 +15,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-# gem for user management userphase
+# gem for user management
 gem 'clearance'
 
 gem 'figaro'
@@ -28,6 +28,9 @@ gem 'mini_magick'
 
 #active job
 gem 'sidekiq'
+
+# For payment
+gem 'braintree'
 
 
 # Use jquery as the JavaScript library

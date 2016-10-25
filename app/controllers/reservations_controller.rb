@@ -28,8 +28,8 @@ class ReservationsController < ApplicationController
 
 
 	  	if @flash_msg == nil
-
-		  	@reservation = current_user.reservations.new(listing_id: params[:listing_id], check_in_date: @check_in_date, amount_of_days: params[:reservation][:amount_of_days].to_i)
+	  		@total_sum = @listing.price * params[:reservation][:amount_of_days].to_i
+		  	@reservation = current_user.reservations.new(listing_id: params[:listing_id], check_in_date: @check_in_date, amount_of_days: params[:reservation][:amount_of_days].to_i, total_sum: @total_sum)
 		  	@host = @listing.user
 		  	@reservation.save
 		  	# ReservationMailer.notification_email(current_user, @host, @reservation.listing_id, @reservation.id).deliver_later
@@ -56,7 +56,7 @@ class ReservationsController < ApplicationController
   end
 
   def show
-
+  	byebug
   	@listing = Listing.find(params[:listing_id])
   	@reservation = Reservation.find(params[:id])
   	@check_in_date = (@reservation.check_in_date).strftime("%A %d %B %Y")
@@ -68,4 +68,12 @@ class ReservationsController < ApplicationController
   def index
 		@reservations = Reservation.where(user_id: params[:id])
   end
+
+  def confirmation
+  	byebug
+  	@listing = Listing.find(params[:listing_id])
+  end
+
+
+
 end

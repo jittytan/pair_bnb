@@ -92,7 +92,7 @@ end
 	private
 
 	def listing_params
-		params.require(:listing).permit(:name, :description, :city, :tag_list, {avatars:[]})
+		params.require(:listing).permit(:name, :description, :city, :tag_list, {avatars:[]}, :price)
 	end
 
 end

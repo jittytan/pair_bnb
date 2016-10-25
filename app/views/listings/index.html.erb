@@ -9,11 +9,12 @@
   Name: <%= link_to "#{y.name}", listing_path(y), method: :get %> <br>
   Description: <%= y.description %><br>
   City: <%= y.city %><br>
+  Price: RM <%= y.price %> per night<br>
   By: <%= y.user.first_name %><br>
   Tags: <% y.tags.each do |c| %>
 	<%= link_to "#{c.name}", "/listings/tags/" + c.id.to_s, methos: :get %>
 	<% end %><br><br>
-	<%= link_to "Reserve now", new_listing_reservation_path(y) %>
+	<%= button_to "Reserve now", new_listing_reservation_path(y), method: :get %>
 	<p>___________________________________________</p>
  
 

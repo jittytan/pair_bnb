@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161023065129) do
+ActiveRecord::Schema.define(version: 20161024134823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,19 @@ ActiveRecord::Schema.define(version: 20161023065129) do
     t.text     "description"
     t.json     "avatars"
     t.string   "city"
+    t.integer  "price"
   end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer  "reservation_id"
+    t.string   "braintree_payment_id"
+    t.string   "status"
+    t.string   "fourdigit"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "payments", ["reservation_id"], name: "index_payments_on_reservation_id", using: :btree
 
   create_table "reservations", force: :cascade do |t|
     t.integer  "user_id"
@@ -42,6 +54,7 @@ ActiveRecord::Schema.define(version: 20161023065129) do
     t.integer  "amount_of_days"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "total_sum"
   end
 
   create_table "taggings", force: :cascade do |t|

@@ -40,6 +40,7 @@
 <p>Name: <%= @listing.name %></p>
 <p>Description: <%= @listing.description %></p>
 <p>City: <%= @listing.city %></p>
+<p>Price: RM <%= @listing.price %> per night</p>
 <p>Tags: <% @listing.tags.each do |b| %>
 	<%= link_to "#{b.name}", "/listings/tags/" + b.id.to_s, method: :get %>
 	<% end %></p><br>

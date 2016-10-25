@@ -4,6 +4,7 @@
   Name: <%= link_to "#{y.name}", listing_path(y), method: :get %> <br>
   Description: <%= y.description %><br>
   City: <%= y.city %><br>
+  Price: RM <%= y.price %> per night <br>
   By: <%= y.user.first_name %><br>
   Check-in: <%= @check_in_date %><br>
   Check-out: <%= @check_out_date %><br>

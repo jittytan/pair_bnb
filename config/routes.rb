@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
 
 
+  get 'payments/new'
+
+  get 'payments/create'
+
  root 'home#index'
 
   resources :listings do 
-    resources :reservations, only: [:new, :create, :show, :index]
+    resources :reservations, only: [:new, :create, :show, :index] do
+      resources :payments, only: [:new, :create]
+    end
   end
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
@@ -24,6 +30,7 @@ Rails.application.routes.draw do
   get "/listings/tags/:id" => "listings#tag"
   get "/listing/search" => "listings#search", as: "listing_search"
   get "/users/:id/reservations" => "reservations#index", as: "user_reservations"
+  get "/listings/:listing_id/reservations/:id/confirmation" => "reservation#confirmation", as: "reservation_confirmation"
  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

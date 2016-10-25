@@ -1,12 +1,21 @@
 <h1> All My reservation made </h1>
 
 <% @reservations.each do |x| %>
-	<p>Name: <%= x.listing.name %></p>
+	<p>Name: <%= link_to x.listing.name, listing_reservation_path(:listing_id => x.listing.id , :id => x.id) %></p>
 	<p>Description: <%= x.listing.description %></p>
 	<p>City: <%= x.listing.city %></p>
 	<p>By: <%= x.listing.user.first_name %></p>
 	<p>Check in: <%= (x.check_in_date).strftime("%A %d %B %Y") %></p>
-	<p> Check out: <%= (x.check_in_date + x.amount_of_days.to_i).strftime("%A %d %B %Y") %>
-	<p> Number of days: <%= x.amount_of_days %></p>
+	<p>Check out: <%= (x.check_in_date + x.amount_of_days.to_i).strftime("%A %d %B %Y") %>
+	<p>Number of days: <%= x.amount_of_days %></p>
+	<p>Total amount: RM <%= x.total_sum %></p>
+	<strong>Payment Status:</strong>
+      <% if x.payments.where(status: :authorized).count == 0%>
+      <span class="btn btn-danger"> NOT PAID </span>
+
+       <%= link_to 'Pay Now' , listing_reservation_path(:listing_id => x.listing.id , :id => x.id), class: "btn btn-warning"  %>
+      <% else %>
+      <span class="btn btn-success">PAID</span>
+      <% end %>
 	<p>_________________________________________</p>
 <% end %>

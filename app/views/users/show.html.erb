@@ -10,6 +10,7 @@
 	<p>Name: <%= link_to "#{a.name}", listing_path(a), method: :get %></p>
 	<p>Description: <%= a.description %></p>
 	<p>City: <%= a.city %></p>
+	<p>Price: RM <%= a.price %> per night</p>
 	Tags: <% a.tags.each do |b| %>
 	<%= link_to "#{b.name}", "/listings/tags/" + b.id.to_s, method: :get %>
 	<% end %><br>
