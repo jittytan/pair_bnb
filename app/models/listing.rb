@@ -5,6 +5,8 @@ class Listing < ActiveRecord::Base
   has_many :unavailable_dates
   has_many :reservations
   mount_uploaders :avatars, AvatarUploader
+  searchkick match: :word_start, searchable: [:name, :city], suggest: [:city]
+
 
 def self.tagged_with(name)
 	Tag.find_by_name!(name).articles

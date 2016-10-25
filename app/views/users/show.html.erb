@@ -7,6 +7,9 @@
 
 <h2>My listings</h2>
 <% @my_listings.each do |a| %>
+  <% if a.avatars != [] %>
+    <%= image_tag (a.avatars[0].thumb.url) %>
+  <% end %>
 	<p>Name: <%= link_to "#{a.name}", listing_path(a), method: :get %></p>
 	<p>Description: <%= a.description %></p>
 	<p>City: <%= a.city %></p>

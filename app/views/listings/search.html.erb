@@ -1,4 +1,4 @@
-<h1> this is the page for the search result</h1>
+<h2> There are <%= @passed_search.size %> listing available for the date given</h2>
 
 <% @passed_search.each do |y| %>
   Name: <%= link_to "#{y.name}", listing_path(y), method: :get %> <br>
@@ -13,7 +13,7 @@
 	<%= link_to "#{c.name}", "/listings/tags/" + c.id.to_s, method: :get %>
 	<% end %><br><br>
 
-	<%= link_to "Reserve now", new_listing_reservation_path(y) %>
+	<%= link_to "Reserve now", new_listing_reservation_path(y), class: "btn btn-success" %>
 	<p>___________________________________________</p>
  
 

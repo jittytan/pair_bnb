@@ -1,11 +1,18 @@
-<h1> This is the listing page</h1>
 
-<p>=====================================</p>
-<p> This is listing without yours</p>
-<p>=====================================</p>
+<div id="flash">
+  <% flash.each do |key, value| -%>
+    <div id="flash_<%= key %>">
+      <h2><%=h value %></h2>
+    </div>
+  <% end %>
+</div>
+
+<h1 > This is the listing page</h1>
 
 <% @other_listings.each do |y| %>
-
+  <% if y.avatars != [] %>
+    <%= image_tag (y.avatars[0].thumb.url) %>
+  <% end %>
   Name: <%= link_to "#{y.name}", listing_path(y), method: :get %> <br>
   Description: <%= y.description %><br>
   City: <%= y.city %><br>
@@ -14,7 +21,7 @@
   Tags: <% y.tags.each do |c| %>
 	<%= link_to "#{c.name}", "/listings/tags/" + c.id.to_s, methos: :get %>
 	<% end %><br><br>
-	<%= button_to "Reserve now", new_listing_reservation_path(y), method: :get %>
+	<%= button_to "Reserve now", new_listing_reservation_path(y), method: :get, class: "btn btn-success" %>
 	<p>___________________________________________</p>
  
 

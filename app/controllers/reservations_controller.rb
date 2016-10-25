@@ -2,6 +2,8 @@ class ReservationsController < ApplicationController
   def new
   	@listing = Listing.find(params[:listing_id])
   	@reservation = Reservation.new
+  	@unavailable_dates = @listing.unavailable_dates.all.map { |x| x.unavailable_date.strftime("%d/%m/%Y")}
+  	
   end
 
   def create
@@ -56,7 +58,7 @@ class ReservationsController < ApplicationController
   end
 
   def show
-  	byebug
+
   	@listing = Listing.find(params[:listing_id])
   	@reservation = Reservation.find(params[:id])
   	@check_in_date = (@reservation.check_in_date).strftime("%A %d %B %Y")
@@ -69,10 +71,6 @@ class ReservationsController < ApplicationController
 		@reservations = Reservation.where(user_id: params[:id])
   end
 
-  def confirmation
-  	byebug
-  	@listing = Listing.find(params[:listing_id])
-  end
 
 
 

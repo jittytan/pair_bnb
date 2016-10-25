@@ -1,0 +1,549 @@
+[2016-10-25 14:22:38,569][INFO ][node                     ] [Wolfsbane] version[2.4.1], pid[13280], build[c67dc32/2016-09-27T18:57:55Z]
+[2016-10-25 14:22:38,577][INFO ][node                     ] [Wolfsbane] initializing ...
+[2016-10-25 14:22:40,033][INFO ][plugins                  ] [Wolfsbane] modules [reindex, lang-expression, lang-groovy], plugins [], sites []
+[2016-10-25 14:22:40,193][INFO ][env                      ] [Wolfsbane] using [1] data paths, mounts [[/ (/dev/sda1)]], net usable_space [7.9gb], net total_space [16.6gb], spins? [possibly], types [ext4]
+[2016-10-25 14:22:40,194][INFO ][env                      ] [Wolfsbane] heap size [1015.6mb], compressed ordinary object pointers [true]
+[2016-10-25 14:22:45,560][INFO ][node                     ] [Wolfsbane] initialized
+[2016-10-25 14:22:45,564][INFO ][node                     ] [Wolfsbane] starting ...
+[2016-10-25 14:22:45,974][INFO ][transport                ] [Wolfsbane] publish_address {127.0.0.1:9300}, bound_addresses {[::1]:9300}, {127.0.0.1:9300}
+[2016-10-25 14:22:46,040][INFO ][discovery                ] [Wolfsbane] elasticsearch/z7EiUWcUTNyfh1UgrU_lIA
+[2016-10-25 14:22:49,268][INFO ][cluster.service          ] [Wolfsbane] new_master {Wolfsbane}{z7EiUWcUTNyfh1UgrU_lIA}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2016-10-25 14:22:49,338][INFO ][http                     ] [Wolfsbane] publish_address {127.0.0.1:9200}, bound_addresses {[::1]:9200}, {127.0.0.1:9200}
+[2016-10-25 14:22:49,340][INFO ][node                     ] [Wolfsbane] started
+[2016-10-25 14:22:49,482][INFO ][gateway                  ] [Wolfsbane] recovered [0] indices into cluster_state
+[2016-10-25 14:23:40,102][INFO ][cluster.metadata         ] [Wolfsbane] [listings_development_20161025142339164] creating index, cause [api], templates [], shards [5]/[1], mappings [_default_]
+[2016-10-25 14:23:41,166][INFO ][cluster.routing.allocation] [Wolfsbane] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[listings_development_20161025142339164][4], [listings_development_20161025142339164][4]] ...]).
+[2016-10-25 14:23:41,413][INFO ][cluster.metadata         ] [Wolfsbane] [listings_development_20161025142339164] create_mapping [listing]
+[2016-10-25 14:47:19,599][DEBUG][action.search            ] [Wolfsbane] [listings_development_20161025142339164][0], node[z7EiUWcUTNyfh1UgrU_lIA], [P], v[2], s[STARTED], a[id=BWqgzRXQSUun3xrV8wl4ZA]: Failed to execute [org.elasticsearch.action.search.SearchRequest@152c88f3] lastShard [true]
+RemoteTransportException[[Wolfsbane][127.0.0.1:9300][indices:data/read/search[phase/query]]]; nested: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+Caused by: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:873)
+	at org.elasticsearch.search.SearchService.createContext(SearchService.java:667)
+	at org.elasticsearch.search.SearchService.createAndPutContext(SearchService.java:633)
+	at org.elasticsearch.search.SearchService.executeQueryPhase(SearchService.java:377)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:368)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:365)
+	at org.elasticsearch.transport.TransportRequestHandler.messageReceived(TransportRequestHandler.java:33)
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:77)
+	at org.elasticsearch.transport.TransportService$4.doRun(TransportService.java:376)
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalArgumentException: No mapping found for field [city.suggest]
+	at org.elasticsearch.search.suggest.phrase.PhraseSuggestParser.parse(PhraseSuggestParser.java:176)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parseInternal(SuggestParseElement.java:94)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parse(SuggestParseElement.java:49)
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:856)
+	... 12 more
+[2016-10-25 14:47:19,603][DEBUG][action.search            ] [Wolfsbane] [listings_development_20161025142339164][1], node[z7EiUWcUTNyfh1UgrU_lIA], [P], v[2], s[STARTED], a[id=0QhGv3WWQziaIv5y5zNktg]: Failed to execute [org.elasticsearch.action.search.SearchRequest@152c88f3] lastShard [true]
+RemoteTransportException[[Wolfsbane][127.0.0.1:9300][indices:data/read/search[phase/query]]]; nested: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+Caused by: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:873)
+	at org.elasticsearch.search.SearchService.createContext(SearchService.java:667)
+	at org.elasticsearch.search.SearchService.createAndPutContext(SearchService.java:633)
+	at org.elasticsearch.search.SearchService.executeQueryPhase(SearchService.java:377)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:368)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:365)
+	at org.elasticsearch.transport.TransportRequestHandler.messageReceived(TransportRequestHandler.java:33)
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:77)
+	at org.elasticsearch.transport.TransportService$4.doRun(TransportService.java:376)
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalArgumentException: No mapping found for field [city.suggest]
+	at org.elasticsearch.search.suggest.phrase.PhraseSuggestParser.parse(PhraseSuggestParser.java:176)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parseInternal(SuggestParseElement.java:94)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parse(SuggestParseElement.java:49)
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:856)
+	... 12 more
+[2016-10-25 14:47:19,615][DEBUG][action.search            ] [Wolfsbane] [listings_development_20161025142339164][2], node[z7EiUWcUTNyfh1UgrU_lIA], [P], v[2], s[STARTED], a[id=6ws35D8sScmBxv_yWpsm-A]: Failed to execute [org.elasticsearch.action.search.SearchRequest@152c88f3] lastShard [true]
+RemoteTransportException[[Wolfsbane][127.0.0.1:9300][indices:data/read/search[phase/query]]]; nested: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+Caused by: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:873)
+	at org.elasticsearch.search.SearchService.createContext(SearchService.java:667)
+	at org.elasticsearch.search.SearchService.createAndPutContext(SearchService.java:633)
+	at org.elasticsearch.search.SearchService.executeQueryPhase(SearchService.java:377)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:368)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:365)
+	at org.elasticsearch.transport.TransportRequestHandler.messageReceived(TransportRequestHandler.java:33)
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:77)
+	at org.elasticsearch.transport.TransportService$4.doRun(TransportService.java:376)
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalArgumentException: No mapping found for field [city.suggest]
+	at org.elasticsearch.search.suggest.phrase.PhraseSuggestParser.parse(PhraseSuggestParser.java:176)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parseInternal(SuggestParseElement.java:94)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parse(SuggestParseElement.java:49)
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:856)
+	... 12 more
+[2016-10-25 14:47:19,623][DEBUG][action.search            ] [Wolfsbane] [listings_development_20161025142339164][3], node[z7EiUWcUTNyfh1UgrU_lIA], [P], v[2], s[STARTED], a[id=8D3E89N0RUuUmM5yy_Lf2w]: Failed to execute [org.elasticsearch.action.search.SearchRequest@152c88f3] lastShard [true]
+RemoteTransportException[[Wolfsbane][127.0.0.1:9300][indices:data/read/search[phase/query]]]; nested: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+Caused by: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:873)
+	at org.elasticsearch.search.SearchService.createContext(SearchService.java:667)
+	at org.elasticsearch.search.SearchService.createAndPutContext(SearchService.java:633)
+	at org.elasticsearch.search.SearchService.executeQueryPhase(SearchService.java:377)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:368)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:365)
+	at org.elasticsearch.transport.TransportRequestHandler.messageReceived(TransportRequestHandler.java:33)
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:77)
+	at org.elasticsearch.transport.TransportService$4.doRun(TransportService.java:376)
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalArgumentException: No mapping found for field [city.suggest]
+	at org.elasticsearch.search.suggest.phrase.PhraseSuggestParser.parse(PhraseSuggestParser.java:176)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parseInternal(SuggestParseElement.java:94)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parse(SuggestParseElement.java:49)
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:856)
+	... 12 more
+[2016-10-25 14:47:19,646][DEBUG][action.search            ] [Wolfsbane] [listings_development_20161025142339164][4], node[z7EiUWcUTNyfh1UgrU_lIA], [P], v[2], s[STARTED], a[id=HJzPZWc2SEism5c0-izKag]: Failed to execute [org.elasticsearch.action.search.SearchRequest@152c88f3]
+RemoteTransportException[[Wolfsbane][127.0.0.1:9300][indices:data/read/search[phase/query]]]; nested: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+Caused by: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:873)
+	at org.elasticsearch.search.SearchService.createContext(SearchService.java:667)
+	at org.elasticsearch.search.SearchService.createAndPutContext(SearchService.java:633)
+	at org.elasticsearch.search.SearchService.executeQueryPhase(SearchService.java:377)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:368)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:365)
+	at org.elasticsearch.transport.TransportRequestHandler.messageReceived(TransportRequestHandler.java:33)
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:77)
+	at org.elasticsearch.transport.TransportService$4.doRun(TransportService.java:376)
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalArgumentException: No mapping found for field [city.suggest]
+	at org.elasticsearch.search.suggest.phrase.PhraseSuggestParser.parse(PhraseSuggestParser.java:176)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parseInternal(SuggestParseElement.java:94)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parse(SuggestParseElement.java:49)
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:856)
+	... 12 more
+[2016-10-25 14:47:19,653][DEBUG][action.search            ] [Wolfsbane] All shards failed for phase: [query]
+RemoteTransportException[[Wolfsbane][127.0.0.1:9300][indices:data/read/search[phase/query]]]; nested: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+Caused by: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:873)
+	at org.elasticsearch.search.SearchService.createContext(SearchService.java:667)
+	at org.elasticsearch.search.SearchService.createAndPutContext(SearchService.java:633)
+	at org.elasticsearch.search.SearchService.executeQueryPhase(SearchService.java:377)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:368)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:365)
+	at org.elasticsearch.transport.TransportRequestHandler.messageReceived(TransportRequestHandler.java:33)
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:77)
+	at org.elasticsearch.transport.TransportService$4.doRun(TransportService.java:376)
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalArgumentException: No mapping found for field [city.suggest]
+	at org.elasticsearch.search.suggest.phrase.PhraseSuggestParser.parse(PhraseSuggestParser.java:176)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parseInternal(SuggestParseElement.java:94)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parse(SuggestParseElement.java:49)
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:856)
+	... 12 more
+[2016-10-25 14:51:41,845][DEBUG][action.search            ] [Wolfsbane] [listings_development_20161025142339164][1], node[z7EiUWcUTNyfh1UgrU_lIA], [P], v[2], s[STARTED], a[id=0QhGv3WWQziaIv5y5zNktg]: Failed to execute [org.elasticsearch.action.search.SearchRequest@2875b51a] lastShard [true]
+RemoteTransportException[[Wolfsbane][127.0.0.1:9300][indices:data/read/search[phase/query]]]; nested: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+Caused by: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:873)
+	at org.elasticsearch.search.SearchService.createContext(SearchService.java:667)
+	at org.elasticsearch.search.SearchService.createAndPutContext(SearchService.java:633)
+	at org.elasticsearch.search.SearchService.executeQueryPhase(SearchService.java:377)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:368)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:365)
+	at org.elasticsearch.transport.TransportRequestHandler.messageReceived(TransportRequestHandler.java:33)
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:77)
+	at org.elasticsearch.transport.TransportService$4.doRun(TransportService.java:376)
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalArgumentException: No mapping found for field [city.suggest]
+	at org.elasticsearch.search.suggest.phrase.PhraseSuggestParser.parse(PhraseSuggestParser.java:176)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parseInternal(SuggestParseElement.java:94)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parse(SuggestParseElement.java:49)
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:856)
+	... 12 more
+[2016-10-25 14:51:41,848][DEBUG][action.search            ] [Wolfsbane] [listings_development_20161025142339164][2], node[z7EiUWcUTNyfh1UgrU_lIA], [P], v[2], s[STARTED], a[id=6ws35D8sScmBxv_yWpsm-A]: Failed to execute [org.elasticsearch.action.search.SearchRequest@2875b51a] lastShard [true]
+RemoteTransportException[[Wolfsbane][127.0.0.1:9300][indices:data/read/search[phase/query]]]; nested: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+Caused by: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:873)
+	at org.elasticsearch.search.SearchService.createContext(SearchService.java:667)
+	at org.elasticsearch.search.SearchService.createAndPutContext(SearchService.java:633)
+	at org.elasticsearch.search.SearchService.executeQueryPhase(SearchService.java:377)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:368)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:365)
+	at org.elasticsearch.transport.TransportRequestHandler.messageReceived(TransportRequestHandler.java:33)
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:77)
+	at org.elasticsearch.transport.TransportService$4.doRun(TransportService.java:376)
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalArgumentException: No mapping found for field [city.suggest]
+	at org.elasticsearch.search.suggest.phrase.PhraseSuggestParser.parse(PhraseSuggestParser.java:176)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parseInternal(SuggestParseElement.java:94)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parse(SuggestParseElement.java:49)
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:856)
+	... 12 more
+[2016-10-25 14:51:41,847][DEBUG][action.search            ] [Wolfsbane] [listings_development_20161025142339164][0], node[z7EiUWcUTNyfh1UgrU_lIA], [P], v[2], s[STARTED], a[id=BWqgzRXQSUun3xrV8wl4ZA]: Failed to execute [org.elasticsearch.action.search.SearchRequest@2875b51a] lastShard [true]
+RemoteTransportException[[Wolfsbane][127.0.0.1:9300][indices:data/read/search[phase/query]]]; nested: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+Caused by: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:873)
+	at org.elasticsearch.search.SearchService.createContext(SearchService.java:667)
+	at org.elasticsearch.search.SearchService.createAndPutContext(SearchService.java:633)
+	at org.elasticsearch.search.SearchService.executeQueryPhase(SearchService.java:377)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:368)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:365)
+	at org.elasticsearch.transport.TransportRequestHandler.messageReceived(TransportRequestHandler.java:33)
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:77)
+	at org.elasticsearch.transport.TransportService$4.doRun(TransportService.java:376)
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalArgumentException: No mapping found for field [city.suggest]
+	at org.elasticsearch.search.suggest.phrase.PhraseSuggestParser.parse(PhraseSuggestParser.java:176)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parseInternal(SuggestParseElement.java:94)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parse(SuggestParseElement.java:49)
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:856)
+	... 12 more
+[2016-10-25 14:51:41,859][DEBUG][action.search            ] [Wolfsbane] [listings_development_20161025142339164][3], node[z7EiUWcUTNyfh1UgrU_lIA], [P], v[2], s[STARTED], a[id=8D3E89N0RUuUmM5yy_Lf2w]: Failed to execute [org.elasticsearch.action.search.SearchRequest@2875b51a] lastShard [true]
+RemoteTransportException[[Wolfsbane][127.0.0.1:9300][indices:data/read/search[phase/query]]]; nested: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+Caused by: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:873)
+	at org.elasticsearch.search.SearchService.createContext(SearchService.java:667)
+	at org.elasticsearch.search.SearchService.createAndPutContext(SearchService.java:633)
+	at org.elasticsearch.search.SearchService.executeQueryPhase(SearchService.java:377)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:368)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:365)
+	at org.elasticsearch.transport.TransportRequestHandler.messageReceived(TransportRequestHandler.java:33)
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:77)
+	at org.elasticsearch.transport.TransportService$4.doRun(TransportService.java:376)
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalArgumentException: No mapping found for field [city.suggest]
+	at org.elasticsearch.search.suggest.phrase.PhraseSuggestParser.parse(PhraseSuggestParser.java:176)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parseInternal(SuggestParseElement.java:94)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parse(SuggestParseElement.java:49)
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:856)
+	... 12 more
+[2016-10-25 14:51:41,861][DEBUG][action.search            ] [Wolfsbane] [listings_development_20161025142339164][4], node[z7EiUWcUTNyfh1UgrU_lIA], [P], v[2], s[STARTED], a[id=HJzPZWc2SEism5c0-izKag]: Failed to execute [org.elasticsearch.action.search.SearchRequest@2875b51a]
+RemoteTransportException[[Wolfsbane][127.0.0.1:9300][indices:data/read/search[phase/query]]]; nested: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+Caused by: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:873)
+	at org.elasticsearch.search.SearchService.createContext(SearchService.java:667)
+	at org.elasticsearch.search.SearchService.createAndPutContext(SearchService.java:633)
+	at org.elasticsearch.search.SearchService.executeQueryPhase(SearchService.java:377)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:368)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:365)
+	at org.elasticsearch.transport.TransportRequestHandler.messageReceived(TransportRequestHandler.java:33)
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:77)
+	at org.elasticsearch.transport.TransportService$4.doRun(TransportService.java:376)
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalArgumentException: No mapping found for field [city.suggest]
+	at org.elasticsearch.search.suggest.phrase.PhraseSuggestParser.parse(PhraseSuggestParser.java:176)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parseInternal(SuggestParseElement.java:94)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parse(SuggestParseElement.java:49)
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:856)
+	... 12 more
+[2016-10-25 14:51:41,886][DEBUG][action.search            ] [Wolfsbane] All shards failed for phase: [query]
+RemoteTransportException[[Wolfsbane][127.0.0.1:9300][indices:data/read/search[phase/query]]]; nested: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+Caused by: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:873)
+	at org.elasticsearch.search.SearchService.createContext(SearchService.java:667)
+	at org.elasticsearch.search.SearchService.createAndPutContext(SearchService.java:633)
+	at org.elasticsearch.search.SearchService.executeQueryPhase(SearchService.java:377)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:368)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:365)
+	at org.elasticsearch.transport.TransportRequestHandler.messageReceived(TransportRequestHandler.java:33)
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:77)
+	at org.elasticsearch.transport.TransportService$4.doRun(TransportService.java:376)
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalArgumentException: No mapping found for field [city.suggest]
+	at org.elasticsearch.search.suggest.phrase.PhraseSuggestParser.parse(PhraseSuggestParser.java:176)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parseInternal(SuggestParseElement.java:94)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parse(SuggestParseElement.java:49)
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:856)
+	... 12 more
+[2016-10-25 14:54:01,360][DEBUG][action.search            ] [Wolfsbane] [listings_development_20161025142339164][0], node[z7EiUWcUTNyfh1UgrU_lIA], [P], v[2], s[STARTED], a[id=BWqgzRXQSUun3xrV8wl4ZA]: Failed to execute [org.elasticsearch.action.search.SearchRequest@6e260fa9] lastShard [true]
+RemoteTransportException[[Wolfsbane][127.0.0.1:9300][indices:data/read/search[phase/query]]]; nested: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"name.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+Caused by: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"name.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:873)
+	at org.elasticsearch.search.SearchService.createContext(SearchService.java:667)
+	at org.elasticsearch.search.SearchService.createAndPutContext(SearchService.java:633)
+	at org.elasticsearch.search.SearchService.executeQueryPhase(SearchService.java:377)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:368)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:365)
+	at org.elasticsearch.transport.TransportRequestHandler.messageReceived(TransportRequestHandler.java:33)
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:77)
+	at org.elasticsearch.transport.TransportService$4.doRun(TransportService.java:376)
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalArgumentException: No mapping found for field [city.suggest]
+	at org.elasticsearch.search.suggest.phrase.PhraseSuggestParser.parse(PhraseSuggestParser.java:176)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parseInternal(SuggestParseElement.java:94)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parse(SuggestParseElement.java:49)
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:856)
+	... 12 more
+[2016-10-25 14:54:01,361][DEBUG][action.search            ] [Wolfsbane] [listings_development_20161025142339164][1], node[z7EiUWcUTNyfh1UgrU_lIA], [P], v[2], s[STARTED], a[id=0QhGv3WWQziaIv5y5zNktg]: Failed to execute [org.elasticsearch.action.search.SearchRequest@6e260fa9] lastShard [true]
+RemoteTransportException[[Wolfsbane][127.0.0.1:9300][indices:data/read/search[phase/query]]]; nested: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"name.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+Caused by: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"name.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:873)
+	at org.elasticsearch.search.SearchService.createContext(SearchService.java:667)
+	at org.elasticsearch.search.SearchService.createAndPutContext(SearchService.java:633)
+	at org.elasticsearch.search.SearchService.executeQueryPhase(SearchService.java:377)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:368)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:365)
+	at org.elasticsearch.transport.TransportRequestHandler.messageReceived(TransportRequestHandler.java:33)
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:77)
+	at org.elasticsearch.transport.TransportService$4.doRun(TransportService.java:376)
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalArgumentException: No mapping found for field [city.suggest]
+	at org.elasticsearch.search.suggest.phrase.PhraseSuggestParser.parse(PhraseSuggestParser.java:176)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parseInternal(SuggestParseElement.java:94)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parse(SuggestParseElement.java:49)
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:856)
+	... 12 more
+[2016-10-25 14:54:01,367][DEBUG][action.search            ] [Wolfsbane] [listings_development_20161025142339164][3], node[z7EiUWcUTNyfh1UgrU_lIA], [P], v[2], s[STARTED], a[id=8D3E89N0RUuUmM5yy_Lf2w]: Failed to execute [org.elasticsearch.action.search.SearchRequest@6e260fa9] lastShard [true]
+RemoteTransportException[[Wolfsbane][127.0.0.1:9300][indices:data/read/search[phase/query]]]; nested: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"name.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+Caused by: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"name.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:873)
+	at org.elasticsearch.search.SearchService.createContext(SearchService.java:667)
+	at org.elasticsearch.search.SearchService.createAndPutContext(SearchService.java:633)
+	at org.elasticsearch.search.SearchService.executeQueryPhase(SearchService.java:377)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:368)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:365)
+	at org.elasticsearch.transport.TransportRequestHandler.messageReceived(TransportRequestHandler.java:33)
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:77)
+	at org.elasticsearch.transport.TransportService$4.doRun(TransportService.java:376)
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalArgumentException: No mapping found for field [city.suggest]
+	at org.elasticsearch.search.suggest.phrase.PhraseSuggestParser.parse(PhraseSuggestParser.java:176)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parseInternal(SuggestParseElement.java:94)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parse(SuggestParseElement.java:49)
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:856)
+	... 12 more
+[2016-10-25 14:54:01,374][DEBUG][action.search            ] [Wolfsbane] [listings_development_20161025142339164][4], node[z7EiUWcUTNyfh1UgrU_lIA], [P], v[2], s[STARTED], a[id=HJzPZWc2SEism5c0-izKag]: Failed to execute [org.elasticsearch.action.search.SearchRequest@6e260fa9]
+RemoteTransportException[[Wolfsbane][127.0.0.1:9300][indices:data/read/search[phase/query]]]; nested: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"name.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+Caused by: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"name.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:873)
+	at org.elasticsearch.search.SearchService.createContext(SearchService.java:667)
+	at org.elasticsearch.search.SearchService.createAndPutContext(SearchService.java:633)
+	at org.elasticsearch.search.SearchService.executeQueryPhase(SearchService.java:377)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:368)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:365)
+	at org.elasticsearch.transport.TransportRequestHandler.messageReceived(TransportRequestHandler.java:33)
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:77)
+	at org.elasticsearch.transport.TransportService$4.doRun(TransportService.java:376)
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalArgumentException: No mapping found for field [city.suggest]
+	at org.elasticsearch.search.suggest.phrase.PhraseSuggestParser.parse(PhraseSuggestParser.java:176)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parseInternal(SuggestParseElement.java:94)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parse(SuggestParseElement.java:49)
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:856)
+	... 12 more
+[2016-10-25 14:54:01,369][DEBUG][action.search            ] [Wolfsbane] [listings_development_20161025142339164][2], node[z7EiUWcUTNyfh1UgrU_lIA], [P], v[2], s[STARTED], a[id=6ws35D8sScmBxv_yWpsm-A]: Failed to execute [org.elasticsearch.action.search.SearchRequest@6e260fa9] lastShard [true]
+RemoteTransportException[[Wolfsbane][127.0.0.1:9300][indices:data/read/search[phase/query]]]; nested: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"name.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+Caused by: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"name.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:873)
+	at org.elasticsearch.search.SearchService.createContext(SearchService.java:667)
+	at org.elasticsearch.search.SearchService.createAndPutContext(SearchService.java:633)
+	at org.elasticsearch.search.SearchService.executeQueryPhase(SearchService.java:377)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:368)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:365)
+	at org.elasticsearch.transport.TransportRequestHandler.messageReceived(TransportRequestHandler.java:33)
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:77)
+	at org.elasticsearch.transport.TransportService$4.doRun(TransportService.java:376)
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalArgumentException: No mapping found for field [city.suggest]
+	at org.elasticsearch.search.suggest.phrase.PhraseSuggestParser.parse(PhraseSuggestParser.java:176)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parseInternal(SuggestParseElement.java:94)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parse(SuggestParseElement.java:49)
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:856)
+	... 12 more
+[2016-10-25 14:54:01,395][DEBUG][action.search            ] [Wolfsbane] All shards failed for phase: [query]
+RemoteTransportException[[Wolfsbane][127.0.0.1:9300][indices:data/read/search[phase/query]]]; nested: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"name.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+Caused by: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"name.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:873)
+	at org.elasticsearch.search.SearchService.createContext(SearchService.java:667)
+	at org.elasticsearch.search.SearchService.createAndPutContext(SearchService.java:633)
+	at org.elasticsearch.search.SearchService.executeQueryPhase(SearchService.java:377)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:368)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:365)
+	at org.elasticsearch.transport.TransportRequestHandler.messageReceived(TransportRequestHandler.java:33)
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:77)
+	at org.elasticsearch.transport.TransportService$4.doRun(TransportService.java:376)
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalArgumentException: No mapping found for field [city.suggest]
+	at org.elasticsearch.search.suggest.phrase.PhraseSuggestParser.parse(PhraseSuggestParser.java:176)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parseInternal(SuggestParseElement.java:94)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parse(SuggestParseElement.java:49)
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:856)
+	... 12 more
+[2016-10-25 14:55:33,847][DEBUG][action.search            ] [Wolfsbane] [listings_development_20161025142339164][1], node[z7EiUWcUTNyfh1UgrU_lIA], [P], v[2], s[STARTED], a[id=0QhGv3WWQziaIv5y5zNktg]: Failed to execute [org.elasticsearch.action.search.SearchRequest@1ccf52ad] lastShard [true]
+RemoteTransportException[[Wolfsbane][127.0.0.1:9300][indices:data/read/search[phase/query]]]; nested: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"name.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+Caused by: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"name.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:873)
+	at org.elasticsearch.search.SearchService.createContext(SearchService.java:667)
+	at org.elasticsearch.search.SearchService.createAndPutContext(SearchService.java:633)
+	at org.elasticsearch.search.SearchService.executeQueryPhase(SearchService.java:377)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:368)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:365)
+	at org.elasticsearch.transport.TransportRequestHandler.messageReceived(TransportRequestHandler.java:33)
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:77)
+	at org.elasticsearch.transport.TransportService$4.doRun(TransportService.java:376)
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalArgumentException: No mapping found for field [city.suggest]
+	at org.elasticsearch.search.suggest.phrase.PhraseSuggestParser.parse(PhraseSuggestParser.java:176)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parseInternal(SuggestParseElement.java:94)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parse(SuggestParseElement.java:49)
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:856)
+	... 12 more
+[2016-10-25 14:55:33,850][DEBUG][action.search            ] [Wolfsbane] [listings_development_20161025142339164][2], node[z7EiUWcUTNyfh1UgrU_lIA], [P], v[2], s[STARTED], a[id=6ws35D8sScmBxv_yWpsm-A]: Failed to execute [org.elasticsearch.action.search.SearchRequest@1ccf52ad] lastShard [true]
+RemoteTransportException[[Wolfsbane][127.0.0.1:9300][indices:data/read/search[phase/query]]]; nested: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"name.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+Caused by: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"name.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:873)
+	at org.elasticsearch.search.SearchService.createContext(SearchService.java:667)
+	at org.elasticsearch.search.SearchService.createAndPutContext(SearchService.java:633)
+	at org.elasticsearch.search.SearchService.executeQueryPhase(SearchService.java:377)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:368)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:365)
+	at org.elasticsearch.transport.TransportRequestHandler.messageReceived(TransportRequestHandler.java:33)
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:77)
+	at org.elasticsearch.transport.TransportService$4.doRun(TransportService.java:376)
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalArgumentException: No mapping found for field [city.suggest]
+	at org.elasticsearch.search.suggest.phrase.PhraseSuggestParser.parse(PhraseSuggestParser.java:176)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parseInternal(SuggestParseElement.java:94)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parse(SuggestParseElement.java:49)
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:856)
+	... 12 more
+[2016-10-25 14:55:33,848][DEBUG][action.search            ] [Wolfsbane] [listings_development_20161025142339164][0], node[z7EiUWcUTNyfh1UgrU_lIA], [P], v[2], s[STARTED], a[id=BWqgzRXQSUun3xrV8wl4ZA]: Failed to execute [org.elasticsearch.action.search.SearchRequest@1ccf52ad] lastShard [true]
+RemoteTransportException[[Wolfsbane][127.0.0.1:9300][indices:data/read/search[phase/query]]]; nested: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"name.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+Caused by: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"name.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:873)
+	at org.elasticsearch.search.SearchService.createContext(SearchService.java:667)
+	at org.elasticsearch.search.SearchService.createAndPutContext(SearchService.java:633)
+	at org.elasticsearch.search.SearchService.executeQueryPhase(SearchService.java:377)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:368)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:365)
+	at org.elasticsearch.transport.TransportRequestHandler.messageReceived(TransportRequestHandler.java:33)
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:77)
+	at org.elasticsearch.transport.TransportService$4.doRun(TransportService.java:376)
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalArgumentException: No mapping found for field [city.suggest]
+	at org.elasticsearch.search.suggest.phrase.PhraseSuggestParser.parse(PhraseSuggestParser.java:176)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parseInternal(SuggestParseElement.java:94)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parse(SuggestParseElement.java:49)
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:856)
+	... 12 more
+[2016-10-25 14:55:33,864][DEBUG][action.search            ] [Wolfsbane] [listings_development_20161025142339164][3], node[z7EiUWcUTNyfh1UgrU_lIA], [P], v[2], s[STARTED], a[id=8D3E89N0RUuUmM5yy_Lf2w]: Failed to execute [org.elasticsearch.action.search.SearchRequest@1ccf52ad] lastShard [true]
+RemoteTransportException[[Wolfsbane][127.0.0.1:9300][indices:data/read/search[phase/query]]]; nested: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"name.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+Caused by: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"name.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:873)
+	at org.elasticsearch.search.SearchService.createContext(SearchService.java:667)
+	at org.elasticsearch.search.SearchService.createAndPutContext(SearchService.java:633)
+	at org.elasticsearch.search.SearchService.executeQueryPhase(SearchService.java:377)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:368)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:365)
+	at org.elasticsearch.transport.TransportRequestHandler.messageReceived(TransportRequestHandler.java:33)
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:77)
+	at org.elasticsearch.transport.TransportService$4.doRun(TransportService.java:376)
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalArgumentException: No mapping found for field [city.suggest]
+	at org.elasticsearch.search.suggest.phrase.PhraseSuggestParser.parse(PhraseSuggestParser.java:176)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parseInternal(SuggestParseElement.java:94)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parse(SuggestParseElement.java:49)
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:856)
+	... 12 more
+[2016-10-25 14:55:33,876][DEBUG][action.search            ] [Wolfsbane] [listings_development_20161025142339164][4], node[z7EiUWcUTNyfh1UgrU_lIA], [P], v[2], s[STARTED], a[id=HJzPZWc2SEism5c0-izKag]: Failed to execute [org.elasticsearch.action.search.SearchRequest@1ccf52ad]
+RemoteTransportException[[Wolfsbane][127.0.0.1:9300][indices:data/read/search[phase/query]]]; nested: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"name.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+Caused by: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"name.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:873)
+	at org.elasticsearch.search.SearchService.createContext(SearchService.java:667)
+	at org.elasticsearch.search.SearchService.createAndPutContext(SearchService.java:633)
+	at org.elasticsearch.search.SearchService.executeQueryPhase(SearchService.java:377)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:368)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:365)
+	at org.elasticsearch.transport.TransportRequestHandler.messageReceived(TransportRequestHandler.java:33)
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:77)
+	at org.elasticsearch.transport.TransportService$4.doRun(TransportService.java:376)
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalArgumentException: No mapping found for field [city.suggest]
+	at org.elasticsearch.search.suggest.phrase.PhraseSuggestParser.parse(PhraseSuggestParser.java:176)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parseInternal(SuggestParseElement.java:94)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parse(SuggestParseElement.java:49)
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:856)
+	... 12 more
+[2016-10-25 14:55:33,896][DEBUG][action.search            ] [Wolfsbane] All shards failed for phase: [query]
+RemoteTransportException[[Wolfsbane][127.0.0.1:9300][indices:data/read/search[phase/query]]]; nested: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"name.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+Caused by: SearchParseException[failed to parse search source [{"query":{"dis_max":{"queries":[{"match":{"name.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"name.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":10,"operator":"and","analyzer":"searchkick_word_search"}}},{"match":{"city.word_start":{"query":"Kuala Lum","boost":1,"operator":"and","analyzer":"searchkick_word_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true}}}]}},"size":1000,"from":0,"suggest":{"text":"Kuala Lum","city":{"phrase":{"field":"city.suggest"}}},"timeout":"11s","fields":[]}]]; nested: IllegalArgumentException[No mapping found for field [city.suggest]];
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:873)
+	at org.elasticsearch.search.SearchService.createContext(SearchService.java:667)
+	at org.elasticsearch.search.SearchService.createAndPutContext(SearchService.java:633)
+	at org.elasticsearch.search.SearchService.executeQueryPhase(SearchService.java:377)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:368)
+	at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:365)
+	at org.elasticsearch.transport.TransportRequestHandler.messageReceived(TransportRequestHandler.java:33)
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:77)
+	at org.elasticsearch.transport.TransportService$4.doRun(TransportService.java:376)
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalArgumentException: No mapping found for field [city.suggest]
+	at org.elasticsearch.search.suggest.phrase.PhraseSuggestParser.parse(PhraseSuggestParser.java:176)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parseInternal(SuggestParseElement.java:94)
+	at org.elasticsearch.search.suggest.SuggestParseElement.parse(SuggestParseElement.java:49)
+	at org.elasticsearch.search.SearchService.parseSource(SearchService.java:856)
+	... 12 more
+[2016-10-25 14:59:28,717][INFO ][cluster.metadata         ] [Wolfsbane] [listings_development_20161025142339164] update_mapping [listing]
+[2016-10-25 16:52:34,638][INFO ][node                     ] [Wolfsbane] stopping ...
+[2016-10-25 16:52:34,779][INFO ][node                     ] [Wolfsbane] stopped
+[2016-10-25 16:52:34,780][INFO ][node                     ] [Wolfsbane] closing ...
+[2016-10-25 16:52:34,815][INFO ][node                     ] [Wolfsbane] closed

@@ -1,3 +1,5 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
 <script>
   $( function() {
     $( "#datepicker" ).datepicker({ 
@@ -9,6 +11,17 @@
 
 </script>
 
+<style>
+	.days {
+		width: 150px;
+	}
+
+	.term {
+		width: 30%;
+	}
+
+</style>
+
 
 <div class=container>
 	<div class=jumbotron>
@@ -19,16 +32,14 @@
 
 	<%= form_for :listing, url: listing_search_path, method: :get do |f| %>
 
-	<%= f.label :city, "Search City" %>
-	<%= f.text_field :city %>
+	<%= text_field_tag :term, params[:term], placeholder:"Where do you wanna go? Example: Kuala Lumpur", class:"term" %>
+	
+	<%= f.text_field :check_in_date, placeholder: "Check-in-date" , id: "datepicker" %>
 
-	<%= f.label :check_in_date %>
-	<%= f.text_field :check_in_date, placeholder: "dd/mm/yyyy" , id: "datepicker" %>
+	<%= f.text_field :amount_of_days, placeholder:"How many days?" , class:"days" %>
 
-	<%= f.label :amount_of_days %>
-	<%= f.text_field :amount_of_days %>
 
-	<%= f.submit "Search"%>
+	<%= f.submit "Search", class: 'btn btn-primary' %>
 	<% end %>
 
 

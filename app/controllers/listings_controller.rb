@@ -55,37 +55,48 @@ end
 
 
 def search
+	@listings = Listing.search(params[:term], fields: ["name", "city"], mispellings: {below: 5})
 
-	@listings = Listing.where(city: params[:listing][:city])
-	@check_in_date = Date.strptime(params[:listing][:check_in_date], "%d/%m/%Y")
-	@amount_of_days = params[:listing][:amount_of_days].to_i
-	@check_out_date = @check_in_date + @amount_of_days
+	if @listings.blank?
+		redirect_to listings_path, flash:{danger: "No successful search result, try different city"}
+	else
+		# @listings = Listing.where(city: params[:term])
+
+		@check_in_date = Date.strptime(params[:listing][:check_in_date], "%d/%m/%Y")
+		@amount_of_days = params[:listing][:amount_of_days].to_i
+		@check_out_date = @check_in_date + @amount_of_days
 
 
-	@date_search = (@check_in_date..@check_out_date-1).map do |date|
-		date
-	end
+		@date_search = (@check_in_date..@check_out_date-1).map do |date|
+			date
+		end
 
-	@passed_search = []
+		@passed_search = []
 
-	@listings.each do |x|
-		# @unavailable_dates = x.unavailable_dates.all.map { |a| a.unavailable_date }
+		@listings.each do |x|
+			# @unavailable_dates = x.unavailable_dates.all.map { |a| a.unavailable_date }
 
-		x.unavailable_dates.all.each do |a|
-			if @date_search.include?(a.unavailable_date) == true # Thats means the date search contain an unavailable date, which means that listing is not available for the date customer wanted, so failed search
-				@failed = true
+			x.unavailable_dates.all.each do |a|
+				if @date_search.include?(a.unavailable_date) == true # Thats means the date search contain an unavailable date, which means that listing is not available for the date customer wanted, so failed search
+					@failed = true
+				end
+				break if @failed 
 			end
-			break if @failed 
+
+			if @failed == nil # if not failed, that means it passed the loop above and it is available to book for the @date_search given
+				@passed_search << x
+			# if @date_search.include?(@unavailable_dates) == false 
+			# 	@passed_search << x
+			end
 		end
 
-		if @failed == nil # if not failed, that means it passed the loop above and it is available to book for the @date_search given
-			@passed_search << x
-		# if @date_search.include?(@unavailable_dates) == false 
-		# 	@passed_search << x
+		if @passed_search == []
+			redirect_to listings_path, flash:{danger: "Search failed! Try different check_in_date"}
+		else
+			render :search
 		end
 	end
 
-	render :search
 end
 
 

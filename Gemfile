@@ -26,11 +26,14 @@ gem 'omniauth-facebook'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
 
-#active job
+# active job
 gem 'sidekiq'
 
 # For payment
 gem 'braintree'
+
+# search function gem
+gem 'searchkick'
 
 
 # Use jquery as the JavaScript library

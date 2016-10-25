@@ -1,11 +1,32 @@
 <script>
+	var $myBadDates = <%= @unavailable_dates.inspect.html_safe %>;
+
+
   $( function() {
+  	console.log($myBadDates);
     $( "#datepicker" ).datepicker({ 
     	minDate: 1, 
     	maxDate: "+6M ",
-    	dateFormat: 'dd/mm/yy', 
+    	dateFormat: 'dd/mm/yy',
+    	beforeShowDay: checkBadDates			
     });
   } );
+
+
+	function checkBadDates(mydate){
+	var $return=true;
+	var $returnclass ="available";
+	$checkdate = $.datepicker.formatDate('dd/mm/yy', mydate);
+	for(var i = 0; i < $myBadDates.length; i++)
+	    {    
+	       if($myBadDates[i] == $checkdate)
+	          {
+	        $return = false;
+	        $returnclass= "unavailable";
+	        }
+	    }
+	return [$return,$returnclass];
+	}
 
 </script>
 
